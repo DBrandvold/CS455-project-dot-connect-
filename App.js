@@ -1,15 +1,20 @@
 import * as React from 'react';
-import { View, Text, Button, TextInput} from 'react-native';
+import { View, Text, Button, TextInput, Image, StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function StartPage({navigation}){
   return(
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    <Text>Home Screen</Text>
+
+  <Image source={require('./DotConnect Logo.png')} />
+
     <Button
-      title="Go to Details"
-      onPress={()=> navigation.navigate('Details')} />
+      title="Start New Game"
+      onPress={()=> navigation.navigate('PlayerPage')} />
+      <Button
+      title="Continue Game"
+      onPress={()=> navigation.navigate('MainPage')} />
     </View>
   );
 }
@@ -62,11 +67,7 @@ function PlayerNames({navigation}){
   
   
 
-    <TextInput
-    label ="input"
-    value = {text}
-    onChangeText = {text => setText(text)}
-    />
+  
 
     <Button
       title="Go to Details... again"
@@ -117,5 +118,7 @@ function App(){
     </NavigationContainer>
   );
 }
+
+
 
 export default App;
