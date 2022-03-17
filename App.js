@@ -1,7 +1,11 @@
-import * as React from 'react';
-import { View, Text, Button, TextInput, Image, StyleSheet} from 'react-native';
+
+import * as React  from 'react';
+import { View, Text, Button, TextInput, Image, StyleSheet, Alert} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useState } from 'react'
+
+
 
 function StartPage({navigation}){
   return(
@@ -21,36 +25,19 @@ function StartPage({navigation}){
 
 function PlayerPage({navigation}){
 
-  const[text, setText] = React.useState("");
   return(
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    <Text>Details Screen</Text>
     
-  
-  
-
-    <TextInput
-    label ="input"
-    value = {text}
-    onChangeText = {text => setText(text)}
-    />
-
+    <Text>How many players</Text>
+    
     <Button
-      title="Go to Details... again"
-      onPress={() =>navigation.push('Details')}/>
+      title="1 player"
+      onPress={() =>navigation.push('PlayerName')}/>
 
 
     <Button 
-      title="Go to Home"
-      onPress={()=>navigation.navigate('Home')} />
-
-    <Button 
-      title="Go Back"
-      onPress={()=>navigation.goBack()} />
-
-    <Button 
-      title="Go back to first screen in stack"
-      onPress={() => navigation.popToTop()}/>
+      title="2 player"
+      onPress={()=>navigation.navigate('PlayersNames')} />
 
 
     </View>
@@ -58,33 +45,110 @@ function PlayerPage({navigation}){
   )
 }
 
-function PlayerNames({navigation}){
+function PlayerName({navigation}){
+
+    const [player1, setplayer1] = useState("");
+
+    const showAlert = () =>
+      Alert.alert(
+      "For your name there needs to be atleast one character",
+      
+      [
+        {text: "OK", onPress: () => console.log("OK PRESSED!")}
+      ]
+    );
+
+    const CheckName = (player1) =>{
+
+      if (player1 == ""){
+        {showAlert}
+      }
+      else{
+        navigation.navigate('MainPage')
+        }
+
+
+    };
+   
     return(
   
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    <Text>Details Screen</Text>
     
-  
-  
+    
+    <Text>Enter Player Name</Text>
 
-  
+    <TextInput
+      style={styles.input}
+      onChangeText={setplayer1}
+      value={player1}
+      />
 
     <Button
-      title="Go to Details... again"
-      onPress={() =>navigation.push('Details')}/>
+      title="Ready"
+      onPress={()=> CheckName(player1)} />
+      
+      
 
 
-    <Button 
-      title="Go to Home"
-      onPress={()=>navigation.navigate('Home')} />
 
-    <Button 
-      title="Go Back"
-      onPress={()=>navigation.goBack()} />
+    </View>
+  
+  )
+}
 
-    <Button 
-      title="Go back to first screen in stack"
-      onPress={() => navigation.popToTop()}/>
+function PlayersNames({navigation}){
+
+    const [player1, setplayer1] = useState("");
+    const [player2, setplayer2] = useState("");
+
+    const showAlert = () =>
+      Alert.alert(
+      "For both Names there needs to be atleast one character",
+      
+      [
+        {text: "OK", onPress: () => console.log("OK PRESSED!")}
+      ]
+    );
+
+    const CheckNames = (player1,player2) =>{
+
+      if (player1 == "" || player2 == ""){
+          {showAlert} 
+      }
+      else{
+        navigation.navigate('MainPage')
+        }
+
+
+    };
+
+    return(
+  
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    
+    
+    <Text>Enter Players Names</Text>
+
+    <TextInput
+      style={styles.input}
+      onChangeText={setplayer1}
+      value={player1}
+      />
+
+  
+
+    <TextInput
+      style={styles.input}
+      onChangeText={setplayer2}
+      value={player2}
+      />
+
+   
+
+    <Button
+      title="Ready"
+      onPress={()=> CheckNames(player1,player2)} />
+   
 
 
     </View>
@@ -111,7 +175,8 @@ function App(){
       <Stack.Navigator initialRouteName="StartPage">
         <Stack.Screen name="PlayerPage" component={PlayerPage}/>
         <Stack.Screen name="StartPage" component ={StartPage} />
-        <Stack.Screen name="PlayerNames" component={PlayerNames}/>
+        <Stack.Screen name="PlayersNames" component={PlayersNames}/>
+        <Stack.Screen name="PlayerName" component={PlayerName}/>
         <Stack.Screen name="MainPage" component={MainPage}/>
         
       </Stack.Navigator>
@@ -119,6 +184,13 @@ function App(){
   );
 }
 
-
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+});
 
 export default App;
