@@ -5,7 +5,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react'
 
+const Player1N = "";
+const Player2N = "";
 
+const grid = [{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,
+}];
 
 function StartPage({navigation}){
   return(
@@ -116,7 +129,8 @@ function PlayersNames({navigation}){
           {showAlert} 
       }
       else{
-        navigation.navigate('MainPage')
+        navigation.navigate('MainPage',{paramKey:player1, paramKey2:player2
+} )
         }
 
 
@@ -135,7 +149,7 @@ function PlayersNames({navigation}){
       value={player1}
       />
 
-  
+
 
     <TextInput
       style={styles.input}
@@ -143,7 +157,6 @@ function PlayersNames({navigation}){
       value={player2}
       />
 
-   
 
     <Button
       title="Ready"
@@ -156,14 +169,29 @@ function PlayersNames({navigation}){
   )
 }
 
-function MainPage({navigation}){
+function MainPage({route,navigation}){
+  const [Score1, setScore1] = useState(0);
+  const [Score2, setScore2] = useState(0);
+
    return(
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    <Text>Home Screen</Text>
+    <Text>Dot Connect</Text>
+
+    <Text> {route.params.paramKey}: {Score1} </Text>
+    <Text> {route.params.paramKey2}: {Score2} </Text>
+
+
+
     <Button
-      title="Go to Details"
-      onPress={()=> navigation.navigate('Details')} />
+      title="Go to home Page"
+      onPress={()=> navigation.navigate('StartPage')} />
     </View>
+
+
+
+
+
+
   );
 }
 
