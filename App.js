@@ -5,20 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react'
 
-const Player1N = "";
-const Player2N = "";
-
-const grid = [{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,
-}];
 
 function StartPage({navigation}){
   return(
@@ -173,12 +159,62 @@ function MainPage({route,navigation}){
   const [Score1, setScore1] = useState(0);
   const [Score2, setScore2] = useState(0);
 
+  const grid = [{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
+{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
+{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,
+}];
+
+
    return(
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
     <Text>Dot Connect</Text>
 
     <Text> {route.params.paramKey}: {Score1} </Text>
     <Text> {route.params.paramKey2}: {Score2} </Text>
+
+    
+     {grid.map((grid, index) => ( 
+       if(grid.num == 1 )
+       {
+         <Button 
+          title ="Dot"
+          onPress={()=> navigation.navigate('StartPage')} />
+          
+       }
+       else if(grid.num == 2 && grid.bool == false)
+       {
+         <Text> " " </Text>
+       }
+       else if(grid.num == 2 && grid.bool == true)
+       {
+         <Text> "-" </Text>
+       }
+      else if(grid.num == 3 && grid.bool == false)
+       {
+         <Text> " " </Text>
+       }
+      else if(grid.num == 3 && grid.bool == true)
+       {
+         <Text> "|" </Text>
+       }
+      else if(grid.num == 5 && grid.bool == false)
+       {
+         <Text> " " </Text>
+       }
+       else if(grid.num == 5 && grid.bool == true)
+       {
+         <Text>{Score1}</Text>
+       }
+
+     ))}
+  
 
 
 
