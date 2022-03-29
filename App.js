@@ -1,9 +1,9 @@
 
 import * as React  from 'react';
-import { View, Text, Button, TextInput, Image, StyleSheet, Alert} from 'react-native';
+import { View, Text, Button, TextInput, Image, StyleSheet, Alert, FlatList,StatusBar,SafeAreaView, TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 function StartPage({navigation}){
@@ -158,77 +158,174 @@ function PlayersNames({navigation}){
 function MainPage({route,navigation}){
   const [Score1, setScore1] = useState(0);
   const [Score2, setScore2] = useState(0);
+  const [turn, setTurn] = useState(0);
+  const player1N = route.params.paramKey;
+  const player2N = route.params.paramKey2;
+  const vertic = 5;
+  var temp = 0;
 
-  const grid = [{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},
-{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},{"bool":false,"num": 3,},{"bool":false,"num": 5,},
-{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,},{"bool":false,"num": 1,},{"bool":false,"num": 2,
-}];
+  const [grid, setgrid] = useState(
+  [
+    {id:'1', num: '1', bool: 'false'},{id:'2', num: '2', bool: 'false'},{id:'3', num: '1', bool: 'false'},{id:'4', num: '2', bool: 'false'},{id:'5', num: '1', bool: 'false'},{id:'6', num: '3', bool: 'false'},{id:'7', num: '5',char: '', bool: 'false'},{id:'8', num: '3', bool: 'false'},{id:'9', num: '5', char: '',bool: 'false'},{id:'10', num: '3', bool: 'false'},{id:'11', num: '1', bool: 'false'},{id:'12', num: '2', bool: 'false'},{id:'13', num: '1', bool: 'false'},{id:'14', num: '2', bool: 'false'},{id:'15', num: '1', bool: 'false'},{id:'16', num: '3', bool: 'false'},{id:'17', num: '5',char: '', bool: 'false'},{id:'18', num: '3', bool: 'false'},{id:'19', num: '5',char: '', bool: 'false'},{id:'20', num: '3', bool: 'false'},{id:'21', num: '1', bool: 'false'},{id:'22', num: '2', bool: 'false'},{id:'23', num: '1', bool: 'false'},{id:'24', num: '2', bool: 'false'},{id:'25', num: '1', bool: 'false'}
+  ]);
 
+  const pressedButton = (item) => {
+      if(item.num == 2)
+      {
+        setgrid[item.id].bool('true');
+        checkSquareV(item);
+      }
+
+      if(item.num == 3)
+      {
+        setgrid[item.id].bool('true');
+        checkSquareH(item);
+      }
+  };
+
+  const checkSquareH = (item) =>{
+    if(item.id - vertic > 5)
+    {
+      if(grid[item.id - vertic].bool == 'false')
+      {
+          if(grid[item.id - vertic + 1 ].bool == 'true' && grid[item.id - vertic - 1 ].bool == 'true' && grid[item.id - vertic * 2 ].bool == 'true')
+          {
+            setgrid[item.id -vertic].bool('true');
+
+            if(turn % 2 == 0)
+            {
+              temp = Score1 + 1;
+              setgrid[item.id -vertic].char(player1N.charAt(0));
+              setScore1(temp);
+            }
+            if(turn % 2 == 1)
+            {
+              temp = Score2 + 1;
+              setgrid[item.id -vertic].char(player2N.charAt(0));
+              setScore1(temp);
+            }
+
+          }
+      }
+    }
+  if(item.id + vertic < 20)
+  {
+    if(grid[item.id + vertic].bool == 'false')
+      {
+          if(grid[item.id + vertic + 1 ].bool == 'true' && grid[item.id + vertic - 1 ].bool == 'true' && grid[item.id + vertic * 2 ].bool == 'true')
+          {
+            setgrid[item.id + vertic].bool('true');
+
+            if(turn % 2 == 0)
+            {
+              temp = Score1 + 1;
+              setgrid[item.id -vertic].char(player1N.charAt(0));
+              setScore1(temp);
+            }
+            if(turn % 2 == 1)
+            {
+              temp = Score2 + 1;
+              setgrid[item.id -vertic].char(player2N.charAt(0));
+              setScore1(temp);
+            }
+
+          }
+
+          
+      }
+    }
+  
+    else{
+        temp = turn + 1;
+        setTurn(temp);
+      }
+  }
+
+  const checkSquareV = (item) =>{
+
+  }
+
+  const renderGrid = ({item}) => {
+          if(item.num == '2')
+          {
+            if(item.bool == 'false')
+            {
+             return( 
+               <TouchableOpacity onPress={() => pressedButton(item)}>
+                <Text style={styles.item}>" "</Text>
+                </TouchableOpacity>
+             )
+            }
+            else{
+             return( <Text>"-"</Text>)
+            }
+          }
+          if(item.num == '3')
+          {
+            if(item.bool == 'false')
+            {
+             return( 
+               <TouchableOpacity onPress={() => pressedButton()}>
+                <Text style={styles.item}>" "</Text>
+                </TouchableOpacity>
+             )
+            }
+            else{
+             return( <Text>"|"</Text>)
+            }
+          }
+          if(item.num == '1')
+          {
+            return(<Text> dot </Text>)
+          }
+          if(item.num == '5')
+          {
+            if(item.bool == false)
+            {
+            return(<Text>   </Text>)
+            }
+             if(item.bool == true)
+            {
+            return(<Text>{item.char}</Text>)
+            }
+            
+          }
+  };
+        
+ 
 
    return(
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <SafeAreaView style={styles.container}>
     <Text>Dot Connect</Text>
 
-    <Text> {route.params.paramKey}: {Score1} </Text>
-    <Text> {route.params.paramKey2}: {Score2} </Text>
+    <Text> {player1N}: {Score1} </Text>
+    <Text> {player2N}: {Score2} </Text>
+    <Text> {grid.length} </Text>
+
 
     
-     {grid.map((grid, index) => ( 
-       if(grid.num == 1 )
-       {
-         <Button 
-          title ="Dot"
-          onPress={()=> navigation.navigate('StartPage')} />
-          
-       }
-       else if(grid.num == 2 && grid.bool == false)
-       {
-         <Text> " " </Text>
-       }
-       else if(grid.num == 2 && grid.bool == true)
-       {
-         <Text> "-" </Text>
-       }
-      else if(grid.num == 3 && grid.bool == false)
-       {
-         <Text> " " </Text>
-       }
-      else if(grid.num == 3 && grid.bool == true)
-       {
-         <Text> "|" </Text>
-       }
-      else if(grid.num == 5 && grid.bool == false)
-       {
-         <Text> " " </Text>
-       }
-       else if(grid.num == 5 && grid.bool == true)
-       {
-         <Text>{Score1}</Text>
-       }
-
-     ))}
-  
+   
+    
+      <FlatList
+        numColumns={5}
+        keyExtractor={item => item.id}
+        data={grid}
+        renderItem={({item}) =>
+          renderGrid({item})
+        }
+        />
+   
 
 
 
     <Button
       title="Go to home Page"
       onPress={()=> navigation.navigate('StartPage')} />
-    </View>
 
 
-
-
-
-
+    </SafeAreaView>
   );
+
 }
 
 const Stack = createNativeStackNavigator();
@@ -254,6 +351,20 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+ container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 10,
+    marginVertical: 4,
+    marginHorizontal: 8,
+  },
+  num: {
+    fontSize: 20,
   },
 });
 
