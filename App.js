@@ -159,90 +159,163 @@ function MainPage({route,navigation}){
   const [Score1, setScore1] = useState(0);
   const [Score2, setScore2] = useState(0);
   const [turn, setTurn] = useState(0);
+  const [count, setCount] = useState(0);
   const player1N = route.params.paramKey;
   const player2N = route.params.paramKey2;
   const vertic = 5;
-  var temp = 0;
+
 
   const [grid, setgrid] = useState(
   [
-    {id:'1', num: '1', bool: 'false'},{id:'2', num: '2', bool: 'false'},{id:'3', num: '1', bool: 'false'},{id:'4', num: '2', bool: 'false'},{id:'5', num: '1', bool: 'false'},{id:'6', num: '3', bool: 'false'},{id:'7', num: '5',char: '', bool: 'false'},{id:'8', num: '3', bool: 'false'},{id:'9', num: '5', char: '',bool: 'false'},{id:'10', num: '3', bool: 'false'},{id:'11', num: '1', bool: 'false'},{id:'12', num: '2', bool: 'false'},{id:'13', num: '1', bool: 'false'},{id:'14', num: '2', bool: 'false'},{id:'15', num: '1', bool: 'false'},{id:'16', num: '3', bool: 'false'},{id:'17', num: '5',char: '', bool: 'false'},{id:'18', num: '3', bool: 'false'},{id:'19', num: '5',char: '', bool: 'false'},{id:'20', num: '3', bool: 'false'},{id:'21', num: '1', bool: 'false'},{id:'22', num: '2', bool: 'false'},{id:'23', num: '1', bool: 'false'},{id:'24', num: '2', bool: 'false'},{id:'25', num: '1', bool: 'false'}
+    {id:'0', num: '1', bool: 'false'},{id:'1', num: '2', bool: 'false'},{id:'2', num: '1', bool: 'false'},{id:'3', num: '2', bool: 'false'},{id:'4', num: '1', bool: 'false'},{id:'5', num: '3', bool: 'false'},{id:'6', num: '5',char: '', bool: 'false'},{id:'7', num: '3', bool: 'false'},{id:'8', num: '5', char: '',bool: 'false'},{id:'9', num: '3', bool: 'false'},{id:'10', num: '1', bool: 'false'},{id:'11', num: '2', bool: 'false'},{id:'12', num: '1', bool: 'false'},{id:'13', num: '2', bool: 'false'},{id:'14', num: '1', bool: 'false'},{id:'15', num: '3', bool: 'false'},{id:'16', num: '5',char: '', bool: 'false'},{id:'17', num: '3', bool: 'false'},{id:'18', num: '5',char: '', bool: 'false'},{id:'19', num: '3', bool: 'false'},{id:'20', num: '1', bool: 'false'},{id:'21', num: '2', bool: 'false'},{id:'22', num: '1', bool: 'false'},{id:'23', num: '2', bool: 'false'},{id:'24', num: '1', bool: 'false'}
   ]);
 
   const pressedButton = (item) => {
       if(item.num == 2)
       {
-        setgrid[item.id].bool('true');
+        changeBool(item.id);
         checkSquareV(item);
       }
 
       if(item.num == 3)
       {
-        setgrid[item.id].bool('true');
+        changeBool(item.id);
         checkSquareH(item);
       }
   };
 
-  const checkSquareH = (item) =>{
-    if(item.id - vertic > 5)
+  const checkSquareV = (item) =>{
+    var temp = 0;
+    if(item.id > 4)
     {
-      if(grid[item.id - vertic].bool == 'false')
+      if(grid[item.id - vertic + 1].bool == 'true' && grid[item.id - vertic - 1].bool == 'true' && grid[item.id - vertic * 2 ].bool == 'true')
       {
-          if(grid[item.id - vertic + 1 ].bool == 'true' && grid[item.id - vertic - 1 ].bool == 'true' && grid[item.id - vertic * 2 ].bool == 'true')
+        if(turn % 2 == 0)
           {
-            setgrid[item.id -vertic].bool('true');
-
-            if(turn % 2 == 0)
-            {
-              temp = Score1 + 1;
-              setgrid[item.id -vertic].char(player1N.charAt(0));
-              setScore1(temp);
-            }
-            if(turn % 2 == 1)
-            {
-              temp = Score2 + 1;
-              setgrid[item.id -vertic].char(player2N.charAt(0));
-              setScore1(temp);
-            }
-
+            temp = Score1 + 1;
+            changeChar(item.id-vertic,player1N.charAt(0));
+            changeBool(item.id - vertic);
+            setScore1(temp);
+            temp = count + 1;
+            setCount(temp);
           }
-      }
-    }
-  if(item.id + vertic < 20)
-  {
-    if(grid[item.id + vertic].bool == 'false')
-      {
-          if(grid[item.id + vertic + 1 ].bool == 'true' && grid[item.id + vertic - 1 ].bool == 'true' && grid[item.id + vertic * 2 ].bool == 'true')
+        if(turn % 2 == 1)
           {
-            setgrid[item.id + vertic].bool('true');
-
-            if(turn % 2 == 0)
-            {
-              temp = Score1 + 1;
-              setgrid[item.id -vertic].char(player1N.charAt(0));
-              setScore1(temp);
-            }
-            if(turn % 2 == 1)
-            {
-              temp = Score2 + 1;
-              setgrid[item.id -vertic].char(player2N.charAt(0));
-              setScore1(temp);
-            }
-
+            temp = Score2 + 1;
+            changeChar(item.id-vertic,player2N.charAt(0));
+            changeBool(item.id - vertic);
+            setScore1(temp);
+            temp = count + 1;
+            setCount(temp);
           }
 
-          
       }
-    }
-  
-    else{
+      else{
         temp = turn + 1;
         setTurn(temp);
+        temp = count + 1;
+        setCount(temp);
       }
-  }
+    }
 
-  const checkSquareV = (item) =>{
+    if(item.id < 20)
+    {
+      if(grid[item.id + vertic + 1].bool == 'true' && grid[item.id + vertic - 1 ].bool == 'true' && grid[item.id + vertic * 2 ].bool == 'true')
+        {
+          if(turn % 2 == 0)
+            {
+              temp = Score1 + 1;
+              changeChar(item.id+vertic,player1N.charAt(0));
+              changeBool(item.id + vertic);
+              setScore1(temp);
+              temp = count + 1;
+              setCount(temp);
+            }
+          if(turn % 2 == 1)
+            {
+              temp = Score2 + 1;
+              changeChar(item.id+vertic,player2N.charAt(0));
+              changeBool(item.id + vertic);
+              setScore1(temp);
+              temp = count + 1;
+              setCount(temp);
+            }
+          }  
+        else{
+          temp = turn + 1;
+          setTurn(temp);
+          temp = count + 1;
+          setCount(temp);
+        }  
+      }
+    }
 
+const checkSquareH = (item) =>{
+  var temp = 0;
+  if(item.id != 5 && item.id != 15)
+    {
+      if(grid[item.id - 2].bool == 'true' && grid[item.id + vertic - 1].bool == 'true' && grid[item.id - 1 - vertic].bool == 'true')
+        {
+          if(turn % 2 == 0)
+            {
+              temp = Score1 + 1;
+              changeChar(item.id-1,player1N.charAt(0));
+              changeBool(item.id-1);
+              setScore1(temp);
+              temp = count + 1;
+              setCount(temp);
+            }
+          if(turn % 2 == 1)
+            {
+              temp = Score2 + 1;
+              changeChar(item.id-1,player2N.charAt(0));
+              changeBool(item.id-1);
+              setScore1(temp);
+              temp = count + 1;
+              setCount(temp);
+            }
+        }
+        else{
+          temp = turn + 1;
+          setTurn(temp);
+          temp = count + 1;
+          setCount(temp);
+        }
+    }
+    
+  if(item.id != 9 && item.id != 19)
+  {
+    if(grid[item.id + vertic + 1 ].bool == 'true' && grid[item.id - vertic + 1 ].bool == 'true' && grid[item.id + 2].bool == 'true')
+        {
+            
+
+          if(turn % 2 == 0)
+            {
+              temp = Score1 + 1;
+              changeChar(item.id+1,player1N.charAt(0));
+              changeBool(item.id+1);
+              setScore1(temp);
+              temp = count + 1;
+              setCount(temp);
+            }
+          if(turn % 2 == 1)
+            {
+              temp = Score2 + 1;
+              changeChar(item.id+1,player2N.charAt(0));
+              changeBool(item.id+1);
+              setScore1(temp);
+              temp = count + 1;
+              setCount(temp);
+            }
+          } 
+      else{
+          temp = turn + 1;
+          setTurn(temp);
+          temp = count + 1;
+          setCount(temp);
+      }   
+    }
+  
   }
 
   const renderGrid = ({item}) => {
@@ -252,12 +325,12 @@ function MainPage({route,navigation}){
             {
              return( 
                <TouchableOpacity onPress={() => pressedButton(item)}>
-                <Text style={styles.item}>" "</Text>
+                <Text style={styles.item}>  </Text>
                 </TouchableOpacity>
              )
             }
             else{
-             return( <Text>"-"</Text>)
+             return( <Text>-</Text>)
             }
           }
           if(item.num == '3')
@@ -265,13 +338,13 @@ function MainPage({route,navigation}){
             if(item.bool == 'false')
             {
              return( 
-               <TouchableOpacity onPress={() => pressedButton()}>
-                <Text style={styles.item}>" "</Text>
+               <TouchableOpacity onPress={() => pressedButton(item)}>
+                <Text style={styles.item}>  </Text>
                 </TouchableOpacity>
              )
             }
             else{
-             return( <Text>"|"</Text>)
+             return( <Text>|</Text>)
             }
           }
           if(item.num == '1')
@@ -291,8 +364,33 @@ function MainPage({route,navigation}){
             
           }
   };
-        
- 
+
+  const changeBool = (id) => {
+    
+    setgrid(prevValue => 
+      [...prevValue].map(el => 
+          el.id === id ? ({...el, bool:'true'}) : el)
+      )
+  }
+  const changeChar = (id,item) => {
+    
+    setgrid(prevValue => 
+      [...prevValue].map(el => 
+          el.id === id ? ({...el, char:item}) : el)
+      )
+  }
+
+  const getTurn = () =>{
+    if(turn % 2 == 0)
+    {
+      return({player1N});
+    }
+    if(turn % 2 == 1)
+    {
+      return({player2N});
+    }
+
+  }
 
    return(
     <SafeAreaView style={styles.container}>
@@ -301,10 +399,11 @@ function MainPage({route,navigation}){
     <Text> {player1N}: {Score1} </Text>
     <Text> {player2N}: {Score2} </Text>
     <Text> {grid.length} </Text>
-
-
+    <Text> {turn} </Text>
+    <Text> {count} </Text>
     
-   
+
+
     
       <FlatList
         numColumns={5}
@@ -317,10 +416,6 @@ function MainPage({route,navigation}){
    
 
 
-
-    <Button
-      title="Go to home Page"
-      onPress={()=> navigation.navigate('StartPage')} />
 
 
     </SafeAreaView>
