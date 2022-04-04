@@ -25,16 +25,15 @@ function StartPage({navigation}){
   return(
   <View style={{backgroundColor: 'white',flex: 1, alignItems: 'center', justifyContent: 'center'}}>
 
-// Game Logo 
+
   <Image source={require('./DotConnect Logo.png')} />
 
-// button to the next screen
+
     <Button
       title="Start New Game"
       onPress={()=> navigation.navigate('PlayerPage')} />
-      //bra1ke inbetween buttons
       <Text> </Text>
-      //disabled button 
+
       <Button
       disabled={true}
       title="Continue Game"
@@ -58,14 +57,14 @@ function PlayerPage({navigation}){
     
     <Text>How many players</Text>
 
-  // button for 1 player disabled
+ 
     <Button
       disabled={true}
       title="1 player"
       onPress={() =>navigation.push('PlayerName')}/>
 
     <Text> </Text>
-  //button for 2 player that leads to next screen
+ 
     <Button 
       title="2 player"
       onPress={()=>navigation.navigate('PlayersNames')} />
@@ -193,7 +192,7 @@ function PlayersNames({navigation}){
     
     
     <Text>Enter Players Names</Text>
-  // enter player1 string
+ 
     <TextInput
       style={styles.input}
       onChangeText={setplayer1}
@@ -201,14 +200,14 @@ function PlayersNames({navigation}){
       />
 
 
-  //enter player2 string
+ 
     <TextInput
       style={styles.input}
       onChangeText={setplayer2}
       value={player2}
       />
 
-  // button to call the function checkNames
+
     <Button
       title="Ready"
       onPress={()=> CheckNames(player1,player2)} />
@@ -610,11 +609,10 @@ const checkSquaresHLeft = (id) =>{
 
    return(
     <SafeAreaView style={styles.container}>
-    //Title Dot Connect
+  
       <View style={styles.title}>
         <Text style={{fontSize:35, alignItems:'center'}}>Dot Connect</Text>
       </View>
-    // scoreboard
       <View style={styles.score}>
           <Text style={styles.player1}> {player1N}: {Score1} </Text>
           <Text style={styles.player2}> {player2N}: {Score2} </Text>
@@ -625,7 +623,7 @@ const checkSquaresHLeft = (id) =>{
  
     
 
-    // the grid 
+
       <View style={styles.grid}>
         <FlatList
           numColumns={9}
