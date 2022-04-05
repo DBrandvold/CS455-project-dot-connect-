@@ -1,10 +1,6 @@
 
-# CS455-project-dot-connect
-=================================================
-
-This is my repository on github for my CS455 project which is a game called dot connect
-
-
+CS455-project-dot-connect
+=========================
 
 
 Table of contents
@@ -21,7 +17,7 @@ Table of contents
 
 Introduction
 ------------
-
+![dot connect logo](/main/DotConnect Logo.png)
 
 
 Installation
@@ -32,6 +28,9 @@ Installation
 Usage
 -----
 
+### Walkthrough of Game
+
+### Devolpment of Code
 
 Planned features
 ----------------
