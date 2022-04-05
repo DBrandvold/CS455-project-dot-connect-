@@ -17,7 +17,7 @@ Table of contents
 
 Introduction
 ------------
-![dot connect logo](main/DotConnect Logo.png)
+![dot connect logo](DotConnect Logo.png)
 
 
 Installation
