@@ -32,11 +32,12 @@ In this section I will discuss the usage of the app. So a wal1kthrough of how th
 ### Walkthrough of Game
 So the walkthrough will begin at the begin right after opening the app.  The app will take you to the first screen which is called the startPage. as shown below in the image the screen will have the games logo in the center and below it there will be a start new game button and a disabled continue game button.  The start new game button when clicked on will ta1ke you to the next screen which is the PlayerPage screen, the continue game would have ta1ken you to the MainPage screen with the previous game you were on to continue but that feature is not avaiable yet.
 
-![StartPages](/assets/images/startScreen.png =250x250)
+![StartPages](/assets/images/startScreen.png)
+<img src="/assets/images/startScreen.png" width="50" height="50">
 
 Next after clicking start new game PlayerPage screen will pop up in this screen the user will see some text and two buttons.  The text will say " How many players" after that there is another disabled button called 1 player this is another feature that will hopefully be added eventually to the game where the user will play a game against a computer. the second button is called 2 player which is the only option at the moment is playing two player locally once this button is pushed the app will ta1ke the user to the next screen, the PlayersNames.
 
-![playerPage](/assets/images/playerPage.png =250x250)
+![playerPage](/assets/images/playerPage.png)
 
 This next screen will have a bit of text ask the users to enter there names in the boxes provided, player 1 first then player 2 once the names have been added the user will then click on the ready button which will ta1ke them to the MainPage where the game is held and the names can be of any length
 
