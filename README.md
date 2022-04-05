@@ -26,17 +26,17 @@ Installation
 
 Manifest
 --------
-- assets
-- .gitignore
-- App.js
-- DotConnect Logo.png
-- README.md
-- app.json
-- babel.config.js
-- circle.png
-- horizontalline.png
-- package.json
-- verticalline.png 
+- assets: holds images used in the app and in the readme file
+- .gitignore: always git hub to ignore files(not using it)
+- App.js: the apps code
+- DotConnect Logo.png: logo image of the game
+- README.md: The readme file that describes the project
+- app.json:The manifest format for the app
+- circle.png: image of dot used in grid
+- horizontalline.png: image of horizontal line used in grid
+- package.json:has the apps dependencies
+- verticalline.png: image of vertical line used in grid
+
 Usage
 -----
 In this section I will discuss the usage of the app. So a wal1kthrough of how the game is played and navigating through the screens to the game. I also will be discussing the development of the game the code I wrote and the toolsand functions used in the code.
