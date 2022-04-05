@@ -26,17 +26,17 @@ Installation
 
 Manifest
 --------
--assets
--.gitignore
--App.js
--DotConnect Logo.png
--README.md
--app.json
--babel.config.js
--circle.png
--horizontalline.png
--package.json
--verticalline.png 
+- assets
+- .gitignore
+- App.js
+- DotConnect Logo.png
+- README.md
+- app.json
+- babel.config.js
+- circle.png
+- horizontalline.png
+- package.json
+- verticalline.png 
 Usage
 -----
 In this section I will discuss the usage of the app. So a wal1kthrough of how the game is played and navigating through the screens to the game. I also will be discussing the development of the game the code I wrote and the toolsand functions used in the code.
@@ -60,7 +60,9 @@ Now in the main screen there will be the title of the game up top then below the
 <img src="/assets/images/dotGridActive.PNG" width="250" height="400">
 
 Now for the game and how it played and the rules. So you will first start out with a grid like the one below 
+
 <img src="/assets/images/dotGrid.PNG" width="200" height="200">
+
 starting with player 1 each player will ta1ke turns filling in one line at a time, this is done by pressing on the slightly shaded blue boxes by inbetween the dots once clic1ked a line will a peer and it will be the next players turn. the goal is to make a full square out of the lines so if when you are the one to add the last line for a sqaure your first character in your name will appear in the square and you will get a point.  If a player does manage to ma1ke a square there turn will continue allowing them to add another line until they do not ma1ke a square.  once all the lines have been added the game would end diclaring the one with the most points a victory then taking the users bac1k to the starting page. how ever as will be stated in the 1known issues and limitations section the game cannot currently do this.
 
 ### Development of Code
