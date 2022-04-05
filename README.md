@@ -36,7 +36,7 @@ Planned features
 ----------------
 The planned features are features for the game that i hope in the future i can add on to it.
 
-- The first add on would be to make the game 1 player, so to ma1ke a computer AI play against the user
+- The first add on would be to make the game 1 player, so to make a computer AI play against the user
 - the second would be for users to play each other on there own devices at the moment the only way to play is 2 players locally on one phone
 - The third would be able to save a game and when you leave the app and come back you would have the option to start a new game or continue the previous game (i have added a button to the starting screen that would ta1ke you to the main game page but ive disabled the button for obvious reasons that it can not save games yet)
 
