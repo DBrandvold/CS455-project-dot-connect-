@@ -23,6 +23,7 @@ Introduction
 
 Installation
 ------------
+not sure how to do this part yet aspecially since the app does not wor1k yet
 
 Manifest
 --------
@@ -66,7 +67,36 @@ Now for the game and how it played and the rules. So you will first start out wi
 starting with player 1 each player will ta1ke turns filling in one line at a time, this is done by pressing on the slightly shaded blue boxes by inbetween the dots once clic1ked a line will a peer and it will be the next players turn. the goal is to make a full square out of the lines so if when you are the one to add the last line for a sqaure your first character in your name will appear in the square and you will get a point.  If a player does manage to ma1ke a square there turn will continue allowing them to add another line until they do not ma1ke a square.  once all the lines have been added the game would end diclaring the one with the most points a victory then taking the users bac1k to the starting page. how ever as will be stated in the 1known issues and limitations section the game cannot currently do this.
 
 ### Development of Code
+creating this app took a bit of code to do and in this section i will brake down and explain the code.  To start with I need to import a few tools to use in react native.
+```
+import * as React  from 'react';
+import { View, Text, Button, TextInput, Image, StyleSheet, Alert, FlatList,StatusBar,SafeAreaView, TouchableOpacity} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useState, useEffect } from 'react'
+```
+I needed to add the core compents that i used for the app as shown in the code above on the second import.  then next was calling for the navigation components i would need to have multiple screens to go back and forth from. Last was the useState and useEffort for storing and changing variables in the code.  After that I created the navigation stac1k and the main function that would hold the navigation containor and create the screens for tha app.
 
+```
+const Stack = createNativeStackNavigator();
+
+function App(){
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="StartPage">
+        <Stack.Screen name="PlayerPage" component={PlayerPage}/>
+        <Stack.Screen name="StartPage" component ={StartPage} />
+        <Stack.Screen name="PlayersNames" component={PlayersNames}/>
+        <Stack.Screen name="PlayerName" component={PlayerName}/>
+        <Stack.Screen name="MainPage" component={MainPage}/>
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+```
+
+once the screens were created I made functions for each screen and started creating the content inside each screen `function StartPage({navigation}){}` each of the functions needed to call the navigation .  I started with the StarPage screen as it was the initial screen. This screen contained in its return an image of the games logo I designed in paints, a button that had start new game on it that would ta1ke you to the next screen PlayerPage and another disabled button that if worked would take you to the MainPage and have the previous game you left off still going. the next function PlayerPage had a text comment asking how many players and then two buttons for the player to choose between playing just 1 player or 2 player 1 player button is disabled because the feature to play one player is not avaiable but it would take the user to a screen that is not being used yet that would have one player give there name very similar to the screen that 2 player button actually takes the user to. In the next function screen called PlayersNames this function first creates two state variables that will contain strings of what the user enters in the input text 'const [player1, setplayer1] = useState("");`.  These values will be called in the next function screen but before that there is also two functions built. One is to check if names where entered into the text inputs or not the other sends an alert to the users phone saying no names have been entered in
 
 
 Planned features
