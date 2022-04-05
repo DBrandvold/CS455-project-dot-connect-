@@ -17,7 +17,7 @@ Table of contents
 
 Introduction
 ------------
-![dot connect logo](/assets/images/DotConnect Logo.png)
+<img src="/assets/images/DotConnect Logo.png" height="400">
 
 
 Installation
@@ -40,8 +40,7 @@ Next after clicking start new game PlayerPage screen will pop up in this screen 
 
 This next screen will have a bit of text ask the users to enter there names in the boxes provided, player 1 first then player 2 once the names have been added the user will then click on the ready button which will ta1ke them to the MainPage where the game is held and the names can be of any length
 
-<img src="/assets/images/playersNames.png" width="250" height="400">
-<img src="/assets/images/PlayersNames2.png" width="250" height="400">
+<img src="/assets/images/playersNames.png" width="250" height="400"><img src="/assets/images/PlayersNames2.png" width="250" height="400">
 
 Now in the main screen there will be the title of the game up top then below the title there will be on the left player 1's name that was entered and there score for the game which starts at 0 and to the right will be player 2's name and score. After that the grid will be in the center of the screen.
 
