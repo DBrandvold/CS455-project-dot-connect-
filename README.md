@@ -18,7 +18,7 @@ Table of contents
 
 Introduction
 ------------
-<img src="/assets/images/DotConnect Logo.png" width="100" height="100">
+<img src="/assets/images/DotConnect Logo.png" width="100" height="100">This app was create for a school project that required us to create an app in react native and use github as a repository.  The goal was to give experiaence in mobile app development while showing what we learned from class.  We were given the option of creating an kind of app we wanted as long as it was complex enough.  I just to create a game, I wanted to do something that i was interested in to keep me motivated.  I chose to build a game that I use to play bac1k in highschool on graph paper called dot connect, a game where you have a grid of dots and have to ma1ke more squares then your appoint can by ta1king turns adding lines.  I did a bit of searching and could not find this game in the app store so i thought it would be perfect.  
 
 
 Installation
