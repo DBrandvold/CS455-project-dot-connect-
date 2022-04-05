@@ -566,7 +566,7 @@ const checkSquaresHLeft = (id) =>{
             }
              if(item.bool == 'true')
             {
-            return(<Text style={{ width: 25, height: 25,backgroundColor: 'white', fontSize: 25}}>{item.char}</Text>)
+            return(<Text style={{width: 25, height: 25,backgroundColor: 'white', fontSize: 20}}>{item.char}</Text>)
             }  
           }
   };
