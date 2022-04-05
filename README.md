@@ -17,8 +17,8 @@ Table of contents
 
 Introduction
 ------------
-![dot connect logo](/main/DotConnect Logo.png)
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+![dot connect logo](main/DotConnect Logo.png)
+
 
 Installation
 ------------
