@@ -17,7 +17,7 @@ Table of contents
 
 Introduction
 ------------
-<img src="/assets/images/DotConnect Logo.png" height="400">
+<img src="/assets/images/DotConnect Logo.png" width="100" height="100">
 
 
 Installation
