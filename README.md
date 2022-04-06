@@ -96,8 +96,134 @@ function App(){
 }
 ```
 
-once the screens were created I made functions for each screen and started creating the content inside each screen `function StartPage({navigation}){}` each of the functions needed to call the navigation .  I started with the StarPage screen as it was the initial screen. This screen contained in its return an image of the games logo I designed in paints, a button that had start new game on it that would ta1ke you to the next screen PlayerPage and another disabled button that if worked would take you to the MainPage and have the previous game you left off still going. the next function PlayerPage had a text comment asking how many players and then two buttons for the player to choose between playing just 1 player or 2 player 1 player button is disabled because the feature to play one player is not avaiable but it would take the user to a screen that is not being used yet that would have one player give there name very similar to the screen that 2 player button actually takes the user to. In the next function screen called PlayersNames this function first creates two state variables that will contain strings of what the user enters in the input text 'const [player1, setplayer1] = useState("");`.  These values will be called in the next function screen but before that there is also two functions built. One is to check if names where entered into the text inputs or not the other sends an alert to the users phone saying no names have been entered in
+once the screens were created I made functions for each screen and started creating the content inside each screen `function StartPage({navigation}){}` each of the functions needed to call the navigation .  I started with the StarPage screen as it was the initial screen. This screen contained in its return an image of the games logo I designed in paints, a button that had start new game on it that would ta1ke you to the next screen PlayerPage and another disabled button that if worked would take you to the MainPage and have the previous game you left off still going. the next function PlayerPage had a text comment asking how many players and then two buttons for the player to choose between playing just 1 player or 2 player 1 player button is disabled because the feature to play one player is not avaiable but it would take the user to a screen that is not being used yet that would have one player give there name very similar to the screen that 2 player button actually takes the user to. In the next function screen called PlayersNames this function first creates two state variables that will contain strings of what the user enters in the input text `const [player1, setplayer1] = useState("");`.  These values will be called in the next function screen but before that there is also two functions built. One is to check if names where entered into the text inputs or not the other sends an alert to the users phone saying no names have been entered in these functions are only called if the button in the retun of this PlayersNames function, in the return there is one text that asks for players names next will be to input texts that allow the user to enter in there names these names will be stored in the variables created at the begining using there set values.
+```
+<TextInput
+      style={styles.input}
+      onChangeText={setplayer1}
+      value={player1}
+      />
+ ```
+ Last there will be the button that calls the functions if there are names in the to variables then the button will navigate the user to the MainPage screen if not the the alert function will activate `<Button title="Ready" onPress={()=> CheckNames(player1,player2)} />`.  Now the last screen function is the MainPage and it is were most of the code is held this function is where the players names scores and the grid for the game itself is created and interacted with. So to start with are the variables needed to this function:
+ ```
+  const [Score1, setScore1] = useState(0);
+  const [Score2, setScore2] = useState(0);
+  const [turn, setTurn] = useState(1);
+  const [count, setCount] = useState(1);
+  const player1N = route.params.paramKey;
+  const player2N = route.params.paramKey2;
+  const vertic = 9;
+  const [grid, setgrid] = useState(
+  [{id:'0', num: '1', bool: 'false'}
+  ```
+  As seen above there are eight variables the first is to hold a number for the score of player 1 second is the same but for player 2.  The third is the turn which holds a number that if odd it is player 1's turn and if even player 2's turn this is seperate from the count which keeps track of how many lines have been add because the turns do not get updated if a player creates a full square.  The player1N and player2N are the values of the previous screens variables sent over by calling `paramKey:player1, paramKey2:player2` in the navigate to after the button is pushed then the route is added to the MainPage functions parameters along with navigation `function MainPage({route,navigation})` and then called by `route.params.paramKey` next is a variable named vertic this variable is set to 9 to help with nativgating the grid.  Last is the grid array itself it has 80 objects with different valuse in each some li1ke the one shown above or others like this `{id:'50', num: '5',char: '', bool: 'false'}, in side each object there are either 3 or 4 variables the id is for the key to keep track of what object it is the bool is used to descide what should be displayed which will go into more detail later the num gives either a 1,2,3 or 5 a 1 is a dot value 2 is the vertical lines, 3 is the horizontal lines and 5 is the square in between the lines.  After the variables lets start at the return and we will discuss the functions when they are called. so in the return there will be the title, player1N,Score1, player2N, Score2 and then the FlatList this is used to render the grid array.
+  ```
+       <View style={styles.grid}>
+        <FlatList
+          numColumns={9}
+          keyExtractor={item => item.id}
+          data={grid}
+          renderItem={({item}) =>
+            renderGrid({item})
+          }
+          />
+      </View>
+  ```
+ For the FlatList in the first part we have the numColumns and its set to 9 so after nine objects are called it will move the next objects down a row, the key extractor gets the id numbers from the gridand the data gets the grid variables and then the renderItem calls the renderGrid function i made and sends the object in the array that its on so if its the first object the id would be 0 and once the renderGrid function is done the flatlist moves on to the next object in the grid.  So for the RenderGrid function it ta1kes the item that sent through and compares its num & flase value from the grid and using if statements the function chec1ks and decides what to return. So if the num = 2 and bool = false the function would return a button if the bool was true it would return an img of a horizontal line thesame thing happens if the num = 3 but if true the img is a vertical line.  If num = 1 it returns an image of a dot. and last is if the num = 5, if num = 5 and the bool is false it returns a text with nothing if its true the return is a text with the items char value. and all of these objects being returned have a width and hiegth of 25 to keep everything in place and alined correctly.Ex:
+ ```
+   const renderGrid = ({item}) => {
+          // if item.num = 2 and boolean is false create button if true create horizontal line image
+          if(item.num == '2')
+          {
+            if(item.bool == 'false')
+            {
+             return( 
+               <TouchableOpacity onPress={() => pressedButton(item.id, item.num)}>
+                <Text style={styles.item}>  </Text>
+                </TouchableOpacity>
+             )
+            }
+            else{
+             return(<Image style={{ width: 25, height: 25 }} source={require('./horizontalline.png')} />)
+            }
+          }
+  ```
+  As you can see above if the num = 2 or 3 it creates a button which calls pressedButton and it sends the items id and num as parameters. this leads us into the next function, so in this function it does a few things the first is it has two if statements to seperate if num = 2 or 3 after that it will call changebool function and sends the parameter id now in this function this changes the bool value of the array object with the id number sent and it will change the bool value to true so when a button is pushed it changes into the line image instead of a button in the grid. this is done by cloning the array and changing the new arrays one boolean value and then replacing the old array with the new by setGrid as shown below.
+  ```
+    const changeBool = (id) => {
+    
+    setgrid(grid => 
+      [...grid].map(el => 
+          el.id == id ? ({...el, bool:'true'}) : el)
+      )
+  }
+  ```
+  once this is down the function pressedButton has one more task.  in an if statement the function checks after the line is created did a square get formed.  now there are four functions that do this check each sliaghtly different then the other. if num = 2 the function calls checkSquareVUp and checkSquareVDown if the num = 3 it calls the checkSquareHLeft and checkSquareHright no these four functions do a few things first is in an if statement they chec1k if there at the end of the grid so if its checkSquareVUp it will make sure  that the button pushed is not one of the top buttons because if it is there is no square above so the function will return false.  now if it passes that chec1k it does the next chec1k which is chec1king to see if the square's lines around it are all true if even one is false then the function will return false but if true then the function returns true but also changes the squares bool to true and the char to the players first char in there name that made the square also giving that player a point by one, this is done by an if statement chec1king turn to be even or odd and if odd then Score1 and player1N values are used if even the player2N and Score2 get changed.Ex:
+  ```
+  const checkSquaresVUp = (id) =>{
+// make sure that its none of the top row buttons
+    if(id > 8)
+    {
+      // check if the square is complete
+      if(grid[id - (vertic * 2)].bool == 'true' && grid[id-(vertic - 1)].bool == 'true' && grid[id-(vertic + 1)].bool == 'true')
+      {
+        //whos turn is it check
+        if(turn % 2 == 1)
+        {
+          // change char and bool of square and add to player1 score
+          changeChar(id - vertic, player1N.charAt(0));
+          changeBool(id - vertic);
+          setScore1(Score1 + 1);
+          return(true);
+        
+        }
+        //whos turn is it check
+        if(turn % 2 == 0)
+        {
+          // change char and bool of square and add to player2 score
+          changeChar(id - vertic, player2N.charAt(0));
+          changeBool(id - vertic);
+          setScore2(Score2 + 1);
+          return(true);
+        }
+      }
+      // if the square is not complete
+      if(grid[id - (vertic * 2)].bool == 'false' || grid[id-(vertic - 1)].bool == 'false' || grid[id-(vertic + 1)].bool == 'false')
+      {
+        return(false);
+      }
+    }
+    //if it is the top row buttons
+    if(id < 8)
+    {
+      return(false);
+    }
+  }
+```
+once the checkSquare function is done the pressedButton's if statement that calls the checkSquare functions will see if a true value is return if true is return then only count goes up by one if false is returned for both then the count and turn goes up by 1.
+```
+const pressedButton = (id, num ) => {
 
+
+      if(num == 2)
+      {
+        //function to change boolean variable in grid object
+        changeBool(id)
+        // if one of the values is true the player 1keeps going so only count gos up
+        if(checkSquaresVUp(id) == true || checkSquaresVDown(id) == true)
+        {
+          setCount(count + 1)
+        }
+        else{
+          setCount(count + 1)
+          setTurn(turn + 1)
+        }
+        
+
+      }
+```
+After that the pressedButton function is done and the flatlist continues to render the grid.  Now at this point there would be a check for when count hits 80 the game is over because that means there are no more lines to add and the game would add up the score  and declare a winner but I have an unfortunite error in my code that brakes the program when `grid[id + anything]` is called. For some reason if you try to get a value higher then the one the flatlist is on, it sends an undefined error. which is a problem because three of the four checkSquare functions need to chec1k alteast on object a head of the item that the flatlist is on and I cannot figure out a solution.
+ 
 
 Planned features
 ----------------
