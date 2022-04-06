@@ -66,7 +66,7 @@ Now for the game and how it played and the rules. So you will first start out wi
 
 starting with player 1 each player will ta1ke turns filling in one line at a time, this is done by pressing on the slightly shaded blue boxes by inbetween the dots once clic1ked a line will a peer and it will be the next players turn. the goal is to make a full square out of the lines so if when you are the one to add the last line for a sqaure your first character in your name will appear in the square and you will get a point.  If a player does manage to ma1ke a square there turn will continue allowing them to add another line until they do not ma1ke a square.  once all the lines have been added the game will end declaring the one with the most points a victory then taking the users back to the starting page. As shown below.
 
-<img src="/assets/images/finishedgame.png" width="200" height="200">
+<img src="/assets/images/finishedgame.png" width="250" height="400">
 
 ### Development of Code
 creating this app took a bit of code to do and in this section i will brake down and explain the code.  To start with I need to import a few tools to use in react native.
