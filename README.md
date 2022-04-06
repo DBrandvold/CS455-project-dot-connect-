@@ -64,7 +64,9 @@ Now for the game and how it played and the rules. So you will first start out wi
 
 <img src="/assets/images/dotGrid.PNG" width="200" height="200">
 
-starting with player 1 each player will ta1ke turns filling in one line at a time, this is done by pressing on the slightly shaded blue boxes by inbetween the dots once clic1ked a line will a peer and it will be the next players turn. the goal is to make a full square out of the lines so if when you are the one to add the last line for a sqaure your first character in your name will appear in the square and you will get a point.  If a player does manage to ma1ke a square there turn will continue allowing them to add another line until they do not ma1ke a square.  once all the lines have been added the game would end diclaring the one with the most points a victory then taking the users bac1k to the starting page. how ever as will be stated in the 1known issues and limitations section the game cannot currently do this.
+starting with player 1 each player will ta1ke turns filling in one line at a time, this is done by pressing on the slightly shaded blue boxes by inbetween the dots once clic1ked a line will a peer and it will be the next players turn. the goal is to make a full square out of the lines so if when you are the one to add the last line for a sqaure your first character in your name will appear in the square and you will get a point.  If a player does manage to ma1ke a square there turn will continue allowing them to add another line until they do not ma1ke a square.  once all the lines have been added the game will end declaring the one with the most points a victory then taking the users back to the starting page. As shown below.
+
+<img src="/assets/images/finishedgame.PNG" width="200" height="200">
 
 ### Development of Code
 creating this app took a bit of code to do and in this section i will brake down and explain the code.  To start with I need to import a few tools to use in react native.
@@ -222,7 +224,47 @@ const pressedButton = (id, num ) => {
 
       }
 ```
-After that the pressedButton function is done and the flatlist continues to render the grid.  Now at this point there would be a check for when count hits 80 the game is over because that means there are no more lines to add and the game would add up the score  and declare a winner but I have an unfortunite error in my code that brakes the program when `grid[id + anything]` is called. For some reason if you try to get a value higher then the one the flatlist is on, it sends an undefined error. which is a problem because three of the four checkSquare functions need to chec1k alteast on object a head of the item that the flatlist is on and I cannot figure out a solution.
+After that the pressedButton function is done and the flatlist continues to render the grid. After this the MAinPage has to check functions while the users are playing the game.  They are checkTurn and checkCount.  for check turn it figures out hows turn it is by an if statement that ta1kes the variable turn and divides by 2 getting the remainder either 1 or 0 if 1 in the rturn it will return a text component right above the grid saying player 1s turn in red text if the turn is 0 it will send a text component back saying player 2s turn in blue text.  For function checkCount this function keeps trac1k of the count value if count  equals 41 then that means all the buttons on the grid have been clicked and the game is over an if statement will decide either the winner or tie and will display an alert message saying that once the alert ok button is pushed theuser is ta1ken bac1k to the start screen.
+
+```
+const checkCount = () =>{
+
+  if(count == 41)
+  {
+    if(Score1 > Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        player1N + " is the winner!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+    if(Score1 < Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        player2N + " is the winner!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+    if(Score1 == Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        "No one lost its a tie!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+  }
+}
+```
+That is it.
  
 
 Planned features
