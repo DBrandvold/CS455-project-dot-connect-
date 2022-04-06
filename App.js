@@ -99,10 +99,10 @@ function PlayerName({navigation}){
     const CheckName = (player1) =>{
 
       if (player1 == ""){
-        {showAlert}
+        return({showAlert})
       }
       else{
-        navigation.navigate('MainPage')
+        return(navigation.navigate('MainPage'));
         }
 
 
@@ -147,25 +147,9 @@ function PlayersNames({navigation}){
     const [player1, setplayer1] = useState("");
     const [player2, setplayer2] = useState("");
 
-  /**
- * Purpose:create an alert if the names are not entered in before the Ready button is pushed
- * Parameter(s):
- *  <1> navigation: none
- * Precondition(s): variables player1 or player2 are empty and ready button is pushed
- * Return: none
- * Side Effect(s):will create an alert from the phone
- */
-    const showAlert = () =>
-      Alert.alert(
-      "For both Names there needs to be atleast one character",
-      
-      [
-        {text: "OK", onPress: () => console.log("OK PRESSED!")}
-      ]
-    );
 
   /**
- * Purpose:to chec1k if variables player1 and player 2 have anything in them
+ * Purpose:to check if variables player1 and player 2 have anything in them
  * Parameter(s):
  *  <1> player1:strings
  *  <2>player2:strings
@@ -176,11 +160,16 @@ function PlayersNames({navigation}){
     const CheckNames = (player1,player2) =>{
 
       if (player1 == "" || player2 == ""){
-          {showAlert} 
+    Alert.alert(
+      "Alert",
+      "neither names can be left empty",
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
       }
       else{
-        navigation.navigate('MainPage',{paramKey:player1, paramKey2:player2
-} )
+        navigation.navigate('MainPage',{paramKey:player1, paramKey2:player2})
         }
 
 
@@ -332,7 +321,7 @@ function MainPage({route,navigation}){
     if(tempId > 8)
     {
       // check if the square is complete
-      if(grid[tempId - (vertic * 2)].bool == 'true' && grid[tempId-(vertic - 1)].bool == 'true' && grid[tempId-(vertic + 1)].bool == 'true')
+      if(grid[tempId - (vertic * 2)].bool == 'true' && grid[tempId-(vertic - 1)].bool == 'true' && grid[tempId - (vertic + 1)].bool == 'true')
       { 
         //whos turn is it check
         if(turn % 2 == 1)
@@ -355,7 +344,7 @@ function MainPage({route,navigation}){
         }
       }
       // if the square is not complete
-      if(grid[tempId - (vertic * 2)].bool == 'false' || grid[tempId-(vertic - 1)].bool == 'false' || grid[tempId-(vertic + 1)].bool == 'false')
+      if(grid[tempId - (vertic * 2)].bool == 'false' || grid[tempId-(vertic - 1)].bool == 'false' || grid[tempId- (vertic + 1)].bool == 'false')
       {
         return(false);
       }
@@ -490,7 +479,7 @@ const checkSquaresHLeft = (id) =>{
     }
     else
     {// check if the square is complete
-      if(grid[tempId - vertic + 1].bool == 'true' && grid[tempId + (vertic + 1)].bool == 'true' && grid[tempId + 2].bool == 'true')
+      if(grid[tempId - vertic + 1].bool == 'true' && grid[tempId + vertic + 1].bool == 'true' && grid[tempId + 2].bool == 'true')
       {
         //whos turn is it check
         if(turn % 2 == 1)
@@ -512,7 +501,7 @@ const checkSquaresHLeft = (id) =>{
         }
       }
       // if the square is not complete
-      if(grid[tempId - (vertic + 1)].bool == 'false' || grid[tempId + (vertic + 1)].bool == 'false' || grid[tempId + 2].bool == 'false')
+      if(grid[tempId - vertic + 1].bool == 'false' || grid[tempId + vertic + 1].bool == 'false' || grid[tempId + 2].bool == 'false')
       {
       return(false);
       }
@@ -590,14 +579,62 @@ const checkSquaresHLeft = (id) =>{
  */
 const checkTurn = () =>{
 
-            if(turn % 2 == 1)
-          {
-            return(<Text style={{color: 'red', textAlign:'center', fontSize:35}}> Player 1 Turn! </Text>);
-          }
-          else{
-            return(<Text style={{color: 'blue', textAlign:'center', fontSize:35}}> Player 2 Turn! </Text>);
-          }
+  if(turn % 2 == 1)
+    {
+      return(<Text style={{color: 'red', textAlign:'center', fontSize:35}}> Player 1 Turn! </Text>);
+    }
+    else{
+      return(<Text style={{color: 'blue', textAlign:'center', fontSize:35}}> Player 2 Turn! </Text>);
+    }
 
+}
+
+
+/**
+ * Purpose:once all the lines have been add in the game will start an alert that tells the winner and then ta1kes the user bac1k to the start
+ * Parameter(s): none
+ * Precondition(s): if count == 41
+ * Return:none
+ * Side Effect(s):
+ * <1> say player 1 is the winner then return to start page
+ * <2> say player 2 is the winner then return to the start page
+ * <3> they it was a tie and return to start page
+ */
+const checkCount = () =>{
+
+  if(count == 41)
+  {
+    if(Score1 > Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        player1N + " is the winner!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+    if(Score1 < Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        player2N + " is the winner!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+    if(Score1 == Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        "No one lost its a tie!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+  }
 }
 
 /**
@@ -666,7 +703,9 @@ const checkTurn = () =>{
           />
       </View>
 
-
+      <View>
+        {checkCount()}
+      </View>
 
     </SafeAreaView>
   );
