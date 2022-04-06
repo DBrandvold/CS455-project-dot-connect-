@@ -208,8 +208,8 @@ function PlayersNames({navigation}){
       />
 
 
-    <Button
-      title="Ready"
+    <Button 
+      title="Ready" 
       onPress={()=> CheckNames(player1,player2)} />
    
 
@@ -243,7 +243,6 @@ function MainPage({route,navigation}){
   // holds the varaible that will give you the object either above or below in the grid
   const vertic = 9;
 
-// the grid for The game should have 9 rows with 9 objects in each row
   const [grid, setgrid] = useState(
   [
     //Row 1 with dots and horizontal lines
@@ -286,7 +285,7 @@ function MainPage({route,navigation}){
         //function to change boolean variable in grid object
         changeBool(id)
         // if one of the values is true the player 1keeps going so only count gos up
-        if(checkSquaresVUp(id) == true || checkSquaresVDown(id) == true)
+        if((checkSquaresVUp(id) == true && checkSquaresVDown(id) == true) || (checkSquaresVUp(id) == true || checkSquaresVDown(id) == true))
         {
           setCount(count + 1)
         }
@@ -303,7 +302,7 @@ function MainPage({route,navigation}){
       //function to change boolean variable in grid object
         changeBool(id);
       // if one of the values is true the player 1keeps going so only count gos up
-        if(checkSquaresHLeft(id) == true || checkSquaresHRight(id) == true)
+        if((checkSquaresHLeft(id) == true && checkSquaresHRight(id) == true) ||(checkSquaresHLeft(id) == true || checkSquaresHRight(id) == true))
         {
           setCount(count + 1)
         }
@@ -328,18 +327,19 @@ function MainPage({route,navigation}){
  * <3> add 1 to the score of the players whos turn it is
  */
   const checkSquaresVUp = (id) =>{
+    var tempId = parseInt(id);
 // make sure that its none of the top row buttons
-    if(id > 8)
+    if(tempId > 8)
     {
       // check if the square is complete
-      if(grid[id - (vertic * 2)].bool == 'true' && grid[id-(vertic - 1)].bool == 'true' && grid[id-(vertic + 1)].bool == 'true')
-      {
+      if(grid[tempId - (vertic * 2)].bool == 'true' && grid[tempId-(vertic - 1)].bool == 'true' && grid[tempId-(vertic + 1)].bool == 'true')
+      { 
         //whos turn is it check
         if(turn % 2 == 1)
         {
           // change char and bool of square and add to player1 score
-          changeChar(id - vertic, player1N.charAt(0));
-          changeBool(id - vertic);
+          changeChar(tempId - vertic, player1N.charAt(0));
+          changeBool(tempId - vertic);
           setScore1(Score1 + 1);
           return(true);
         
@@ -348,20 +348,20 @@ function MainPage({route,navigation}){
         if(turn % 2 == 0)
         {
           // change char and bool of square and add to player2 score
-          changeChar(id - vertic, player2N.charAt(0));
-          changeBool(id - vertic);
+          changeChar(tempId - vertic, player2N.charAt(0));
+          changeBool(tempId - vertic);
           setScore2(Score2 + 1);
           return(true);
         }
       }
       // if the square is not complete
-      if(grid[id - (vertic * 2)].bool == 'false' || grid[id-(vertic - 1)].bool == 'false' || grid[id-(vertic + 1)].bool == 'false')
+      if(grid[tempId - (vertic * 2)].bool == 'false' || grid[tempId-(vertic - 1)].bool == 'false' || grid[tempId-(vertic + 1)].bool == 'false')
       {
         return(false);
       }
     }
     //if it is the top row buttons
-    if(id < 8)
+    if(tempId < 8)
     {
       return(false);
     }
@@ -379,18 +379,20 @@ function MainPage({route,navigation}){
  * <3> add 1 to the score of the players whos turn it is
  */
   const checkSquaresVDown = (id) =>{
+
+    var tempId = parseInt(id);
     // make sure that its none of the bottom row buttons
-    if(id < 71)
+    if(tempId < 71)
     {
       // check if the square is complete
-      if(grid[id + (vertic * 2)].bool == 'true' && grid[id + (vertic + 1)].bool == 'true' && grid[id + (vertic - 1)].bool == 'true')
+      if(grid[tempId + (vertic * 2)].bool == 'true' && grid[tempId + (vertic + 1)].bool == 'true' && grid[tempId + (vertic - 1)].bool == 'true')
       {
         //whos turn is it check
         if(turn % 2 == 1)
         {
           // change char and bool of square and add to player1 score
-          changeChar(id + vertic, player1N.charAt(0));
-          changeBool(id + vertic);
+          changeChar(tempId + vertic, player1N.charAt(0));
+          changeBool(tempId + vertic);
           setScore1(Score1 + 1);
           return(true);
         }
@@ -398,21 +400,21 @@ function MainPage({route,navigation}){
         if(turn % 2 == 0)
         {
           // change char and bool of square and add to player2 score
-          changeChar(id + vertic, player2N.charAt(0));
-          changeBool(id + vertic);
+          changeChar(tempId + vertic, player2N.charAt(0));
+          changeBool(tempId + vertic);
           setScore2(Score2 + 1);
           return(true);
         }
       }
     // if the square is not complete
-      if(grid[id + (vertic * 2)].bool == 'false' || grid[id + (vertic + 1)].bool == 'false' || grid[id + (vertic - 1)].bool == 'false')
+      if(grid[tempId + (vertic * 2)].bool == 'false' || grid[tempId + (vertic + 1)].bool == 'false' || grid[tempId + (vertic - 1)].bool == 'false')
       {
     
         return(false);
       }
     }
     // if it is the bottom row buttons
-    if(id>71)
+    if(tempId > 71)
     {
       return(false);
     }
@@ -430,21 +432,22 @@ function MainPage({route,navigation}){
  * <3> add 1 to the score of the players whos turn it is
  */
 const checkSquaresHLeft = (id) =>{
+    var tempId = parseInt(id);
     // make sure that its none of the left column buttons
-    if(id == 9 || id == 27 || id == 45 || id == 63)
+    if( tempId == 9 || tempId == 27 || tempId == 45 || tempId == 63)
     {
      return(false);
     }
     else
     {// check if the square is complete
-      if(grid[id - (vertic + 1)].bool == 'true' && grid[id + (vertic - 1)].bool == 'true' && grid[id - 2].bool == 'true')
+      if(grid[tempId - (vertic + 1)].bool == 'true' && grid[tempId + (vertic - 1)].bool == 'true' && grid[tempId - 2].bool == 'true')
       {
         //whos turn is it check
         if(turn % 2 == 1)
         {
           // change char and bool of square and add to player1 score
-          changeChar(id - 1, player1N.charAt(0));
-          changeBool(id - 1);
+          changeChar(tempId - 1, player1N.charAt(0));
+          changeBool(tempId - 1);
           setScore1(Score1 + 1)
           return(true);
         }
@@ -452,14 +455,14 @@ const checkSquaresHLeft = (id) =>{
         if(turn % 2 == 0)
         {
           // change char and bool of square and add to player2 score
-          changeChar(id - 1, player2N.charAt(0));
-          changeBool(id - 1);
+          changeChar(tempId - 1, player2N.charAt(0));
+          changeBool(tempId - 1);
           setScore2(Score2 + 1)
           return(true);
         }
       }
       // if the square is not complete
-      if(grid[id - (vertic + 1)].bool == 'false' || grid[id + (vertic - 1)].bool == 'false' || grid[id - 2].bool == 'false')
+      if(grid[tempId - (vertic + 1)].bool == 'false' || grid[tempId + (vertic - 1)].bool == 'false' || grid[tempId - 2].bool == 'false')
       {
       return(false);
       }
@@ -479,17 +482,22 @@ const checkSquaresHLeft = (id) =>{
  * <3> add 1 to the score of the players whos turn it is
  */
   const checkSquaresHRight = (id) =>{
+    var tempId = parseInt(id);
     // make sure that its none of the Right column buttons
-    if(id == 17 || id == 35 || id == 53 || id == 71)
+    if(tempId == 17 || tempId == 35 || tempId == 53 || tempId == 71)
+    {
+      return(false);
+    }
+    else
     {// check if the square is complete
-      if(grid[id - (vertic + 1)].bool == 'true' && grid[id + (vertic + 1)].bool == 'true' && grid[id + 2].bool == 'true')
+      if(grid[tempId - vertic + 1].bool == 'true' && grid[tempId + (vertic + 1)].bool == 'true' && grid[tempId + 2].bool == 'true')
       {
         //whos turn is it check
         if(turn % 2 == 1)
         {
           // change char and bool of square and add to player1 score
-          changeChar(id + 1, player1N.charAt(0));
-          changeBool(id + 1);
+          changeChar(tempId + 1, player1N.charAt(0));
+          changeBool(tempId + 1);
           setScore1(Score1 + 1)
           return(true);
         }
@@ -497,14 +505,14 @@ const checkSquaresHLeft = (id) =>{
         if(turn % 2 == 0)
         {
           // change char and bool of square and add to player2 score
-          changeChar(id + 1, player2N.charAt(0));
-          changeBool(id + 1);
+          changeChar(tempId + 1, player2N.charAt(0));
+          changeBool(tempId + 1);
           setScore2(Score2 + 1)
           return(true);
         }
       }
       // if the square is not complete
-      if(grid[id - (vertic + 1)].bool == 'false' || grid[id + (vertic + 1)].bool == 'false' || grid[id + 2].bool == 'false')
+      if(grid[tempId - (vertic + 1)].bool == 'false' || grid[tempId + (vertic + 1)].bool == 'false' || grid[tempId + 2].bool == 'false')
       {
       return(false);
       }
@@ -569,8 +577,28 @@ const checkSquaresHLeft = (id) =>{
             return(<Text style={{width: 25, height: 25,backgroundColor: 'white', fontSize: 20}}>{item.char}</Text>)
             }  
           }
+
   };
 
+
+/**
+ * Purpose:changes the message above the grid to the players turn
+ * Parameter(s): none
+ * Precondition(s): called in return
+ * Return: either a text component for player 1 or for player 2
+ * Side Effect(s):none
+ */
+const checkTurn = () =>{
+
+            if(turn % 2 == 1)
+          {
+            return(<Text style={{color: 'red', textAlign:'center', fontSize:35}}> Player 1 Turn! </Text>);
+          }
+          else{
+            return(<Text style={{color: 'blue', textAlign:'center', fontSize:35}}> Player 2 Turn! </Text>);
+          }
+
+}
 
 /**
  * Purpose:changes a boolean in the grid
@@ -617,7 +645,10 @@ const checkSquaresHLeft = (id) =>{
           <Text style={styles.player1}> {player1N}: {Score1} </Text>
           <Text style={styles.player2}> {player2N}: {Score2} </Text>
       </View>
-
+      <View> 
+        {checkTurn()}
+        <Text> </Text>
+      </View>
 
    
  
