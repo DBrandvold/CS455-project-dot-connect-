@@ -64,7 +64,9 @@ Now for the game and how it played and the rules. So you will first start out wi
 
 <img src="/assets/images/dotGrid.PNG" width="200" height="200">
 
-starting with player 1 each player will ta1ke turns filling in one line at a time, this is done by pressing on the slightly shaded blue boxes by inbetween the dots once clic1ked a line will a peer and it will be the next players turn. the goal is to make a full square out of the lines so if when you are the one to add the last line for a sqaure your first character in your name will appear in the square and you will get a point.  If a player does manage to ma1ke a square there turn will continue allowing them to add another line until they do not ma1ke a square.  once all the lines have been added the game would end diclaring the one with the most points a victory then taking the users bac1k to the starting page. how ever as will be stated in the 1known issues and limitations section the game cannot currently do this.
+starting with player 1 each player will ta1ke turns filling in one line at a time, this is done by pressing on the slightly shaded blue boxes by inbetween the dots once clic1ked a line will a peer and it will be the next players turn. the goal is to make a full square out of the lines so if when you are the one to add the last line for a sqaure your first character in your name will appear in the square and you will get a point.  If a player does manage to ma1ke a square there turn will continue allowing them to add another line until they do not ma1ke a square.  once all the lines have been added the game will end declaring the one with the most points a victory then taking the users back to the starting page. As shown below.
+
+<img src="/assets/images/finishedgame.png" width="250" height="400">
 
 ### Development of Code
 creating this app took a bit of code to do and in this section i will brake down and explain the code.  To start with I need to import a few tools to use in react native.
@@ -222,7 +224,47 @@ const pressedButton = (id, num ) => {
 
       }
 ```
-After that the pressedButton function is done and the flatlist continues to render the grid.  Now at this point there would be a check for when count hits 80 the game is over because that means there are no more lines to add and the game would add up the score  and declare a winner but I have an unfortunite error in my code that brakes the program when `grid[id + anything]` is called. For some reason if you try to get a value higher then the one the flatlist is on, it sends an undefined error. which is a problem because three of the four checkSquare functions need to chec1k alteast on object a head of the item that the flatlist is on and I cannot figure out a solution.
+After that the pressedButton function is done and the flatlist continues to render the grid. After this the MAinPage has to check functions while the users are playing the game.  They are checkTurn and checkCount.  for check turn it figures out hows turn it is by an if statement that ta1kes the variable turn and divides by 2 getting the remainder either 1 or 0 if 1 in the rturn it will return a text component right above the grid saying player 1s turn in red text if the turn is 0 it will send a text component back saying player 2s turn in blue text.  For function checkCount this function keeps trac1k of the count value if count  equals 41 then that means all the buttons on the grid have been clicked and the game is over an if statement will decide either the winner or tie and will display an alert message saying that once the alert ok button is pushed theuser is ta1ken bac1k to the start screen.
+
+```
+const checkCount = () =>{
+
+  if(count == 41)
+  {
+    if(Score1 > Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        player1N + " is the winner!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+    if(Score1 < Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        player2N + " is the winner!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+    if(Score1 == Score2)
+    {
+      Alert.alert(
+        "Congradulations!",
+        "No one lost its a tie!",
+        [
+          { text: "OK", onPress: () => navigation.navigate('StartPage') }
+        ]
+        );
+    }
+  }
+}
+```
+That is it.
  
 
 Planned features
@@ -237,9 +279,9 @@ those are the main add ons I would like to work achieve first, then after that p
  
 Known issues and limitations
 ----------------------------
-The big issue I am having with the game right now is when one of the buttons created by the flatlist is clicked on it is suppose to create the line in the grid and it does, but its also suppose to chec1k to see if a square has been created.  The issue is whenever I call a value from the grid that is a high key value in the grid it returns undefined which is causing the game to crash. In the function pressedButton it calls on four other functions called checkSquareVUp, checkSquareVDown, checkSquareHRight and checkSquareHLeft, which will check if the line added completed a square and then return a boolean. The call i use for getting the item boolean value is grid[id].bool now the id part is the key value for the item that the flatlist is on at that time we send that through the four functions which then change that number to find the other square line boolean values and if the other line boolean values are true then the circle has been completed and that player score will go up by one.  As stated above when checking the other lines only the lines that have a key value lower then the one that is currently on can produce values the others send undefined.
+An issue i am having is when one line entered completes to squares for somereason its only giving a score of 1 instead of two since if you make a squares the you get a point so if you make two squares it should be 2 but for some reason the the Score values are only going up by 1.
 
-The issue above has also impacted on moving forward to finshing the game, so as the lines are added in there is a hidden count in the code that does not show the user once the count its the correct number which in this game there are 40 lines that will need to be added everytime that happens the count will go up once the count hits 40 that means there will be no lines left to add and will add up the scores between player 1 and player 2. Once that is done a alert would pop up saying congradulations to the winning player then once an alert button is pushed it will take the users back to the starting screen.
+so i had a big issue that made it so i could not identify objects in the grid array that the issue was resolved April 6, when i realized to check the objects i was using the object.id which is a string and adding a number which wouldn't add 1 like 1+1=2 it was doing string 1 + 1 = string 11.
 
 
 
