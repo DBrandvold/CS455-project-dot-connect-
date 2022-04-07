@@ -581,10 +581,10 @@ const checkTurn = () =>{
 
   if(turn % 2 == 1)
     {
-      return(<Text style={{color: 'red', textAlign:'center', fontSize:35}}> Player 1 Turn! </Text>);
+      return(<Text style={{color: 'blue', textAlign:'center', fontSize:35}}> Player 1 Turn! </Text>);
     }
     else{
-      return(<Text style={{color: 'blue', textAlign:'center', fontSize:35}}> Player 2 Turn! </Text>);
+      return(<Text style={{color: 'red', textAlign:'center', fontSize:35}}> Player 2 Turn! </Text>);
     }
 
 }
