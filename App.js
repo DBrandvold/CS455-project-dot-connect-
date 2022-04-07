@@ -237,19 +237,19 @@ function MainPage({route,navigation}){
     //Row 1 with dots and horizontal lines
 {id:'0', num: '1', bool: 'false'},{id:'1', num: '2', bool: 'false'},{id:'2', num: '1', bool: 'false'},{id:'3', num: '2', bool: 'false'},{id:'4', num: '1', bool: 'false'},{id:'5', num: '2', bool: 'false'},{id:'6', num: '1', bool: 'false'},{id:'7', num: '2', bool: 'false'},{id:'8', num: '1', bool: 'false'},
 //Row 2 vertical lines and the char box when scored
-{id:'9', num: '3', bool: 'false'},{id:'10', num: '5',char: '', bool: 'false'},{id:'11', num: '3', bool: 'false'},{id:'12', num: '5', char: '',bool: 'false'},{id:'13', num: '3', bool: 'false'},{id:'14', num: '5',char: '', bool: 'false'},{id:'15', num: '3', bool: 'false'},{id:'16', num: '5',char: '', bool: 'false'},{id:'17', num: '3', bool: 'false'},
+{id:'9', num: '3', bool: 'false'},{id:'10', num: '5',char: '', tColor:'', bool: 'false'},{id:'11', num: '3', bool: 'false'},{id:'12', num: '5', char: '', tColor:'', bool: 'false'},{id:'13', num: '3', bool: 'false'},{id:'14', num: '5',char: '', tColor:'', bool: 'false'},{id:'15', num: '3', bool: 'false'},{id:'16', num: '5',char: '', tColor:'', bool: 'false'},{id:'17', num: '3', bool: 'false'},
 //Row 3 with dots and horizontal lines
 {id:'18', num: '1', bool: 'false'},{id:'19', num: '2', bool: 'false'},{id:'20', num: '1', bool: 'false'},{id:'21', num: '2', bool: 'false'},{id:'22', num: '1', bool: 'false'},{id:'23', num: '2', bool: 'false'},{id:'24', num: '1', bool: 'false'},{id:'25', num: '2', bool: 'false'},{id:'26', num: '1', bool: 'false'},
 //Row 4 vertical lines and the char box when scored
-{id:'27', num: '3', bool: 'false'},{id:'28', num: '5',char: '', bool: 'false'},{id:'29', num: '3', bool: 'false'},{id:'30', num: '5', char: '',bool: 'false'},{id:'31', num: '3', bool: 'false'},{id:'32', num: '5',char: '', bool: 'false'},{id:'33', num: '3', bool: 'false'},{id:'34', num: '5',char: '', bool: 'false'},{id:'35', num: '3', bool: 'false'},
+{id:'27', num: '3', bool: 'false'},{id:'28', num: '5',char: '', tColor:'', bool: 'false'},{id:'29', num: '3', bool: 'false'},{id:'30', num: '5', char: '', tColor:'',bool: 'false'},{id:'31', num: '3', bool: 'false'},{id:'32', num: '5',char: '', tColor:'', bool: 'false'},{id:'33', num: '3', bool: 'false'},{id:'34', num: '5',char: '',  tColor:'',bool: 'false'},{id:'35', num: '3', bool: 'false'},
 //Row 5 with dots and horizontal lines
 {id:'36', num: '1', bool: 'false'},{id:'37', num: '2', bool: 'false'},{id:'38', num: '1', bool: 'false'},{id:'39', num: '2', bool: 'false'},{id:'40', num: '1', bool: 'false'},{id:'41', num: '2', bool: 'false'},{id:'42', num: '1', bool: 'false'},{id:'43', num: '2', bool: 'false'},{id:'44', num: '1', bool: 'false'},
 //Row 6 vertical lines and the char box when scored
-{id:'45', num: '3', bool: 'false'},{id:'46', num: '5',char: '', bool: 'false'},{id:'47', num: '3', bool: 'false'},{id:'48', num: '5', char: '',bool: 'false'},{id:'49', num: '3', bool: 'false'},{id:'50', num: '5',char: '', bool: 'false'},{id:'51', num: '3', bool: 'false'},{id:'52', num: '5',char: '', bool: 'false'},{id:'53', num: '3', bool: 'false'},
+{id:'45', num: '3', bool: 'false'},{id:'46', num: '5',char: '', tColor:'', bool: 'false'},{id:'47', num: '3', bool: 'false'},{id:'48', num: '5', char: '', tColor:'', bool: 'false'},{id:'49', num: '3', bool: 'false'},{id:'50', num: '5',char: '', tColor:'', bool: 'false'},{id:'51', num: '3', bool: 'false'},{id:'52', num: '5',char: '', tColor:'', bool: 'false'},{id:'53', num: '3', bool: 'false'},
 //Row 7 with dots and horizontal lines
 {id:'54', num: '1', bool: 'false'},{id:'55', num: '2', bool: 'false'},{id:'56', num: '1', bool: 'false'},{id:'57', num: '2', bool: 'false'},{id:'58', num: '1', bool: 'false'},{id:'59', num: '2', bool: 'false'},{id:'60', num: '1', bool: 'false'},{id:'61', num: '2', bool: 'false'},{id:'62', num: '1', bool: 'false'},
 //Row 8 vertical lines and the char box when scored
-{id:'63', num: '3', bool: 'false'},{id:'64', num: '5',char: '', bool: 'false'},{id:'65', num: '3', bool: 'false'},{id:'66', num: '5', char: '',bool: 'false'},{id:'67', num: '3', bool: 'false'},{id:'68', num: '5',char: '', bool: 'false'},{id:'69', num: '3', bool: 'false'},{id:'70', num: '5',char: '', bool: 'false'},{id:'71', num: '3', bool: 'false'},
+{id:'63', num: '3', bool: 'false'},{id:'64', num: '5',char: '', tColor:'', bool: 'false'},{id:'65', num: '3', bool: 'false'},{id:'66', num: '5', char: '', tColor:'', bool: 'false'},{id:'67', num: '3', bool: 'false'},{id:'68', num: '5',char: '', tColor:'', bool: 'false'},{id:'69', num: '3', bool: 'false'},{id:'70', num: '5',char: '',  tColor:'',bool: 'false'},{id:'71', num: '3', bool: 'false'},
 //Row 9 with dots and horizontal lines
 {id:'72', num: '1', bool: 'false'},{id:'73', num: '2', bool: 'false'},{id:'74', num: '1', bool: 'false'},{id:'75', num: '2', bool: 'false'},{id:'76', num: '1', bool: 'false'},{id:'77', num: '2', bool: 'false'},{id:'78', num: '1', bool: 'false'},{id:'79', num: '2', bool: 'false'},{id:'80', num: '1', bool: 'false'}
   ]);
@@ -328,6 +328,7 @@ function MainPage({route,navigation}){
         {
           // change char and bool of square and add to player1 score
           changeChar(tempId - vertic, player1N.charAt(0));
+          changeColor(tempId - vertic, 'blue');
           changeBool(tempId - vertic);
           setScore1(Score1 + 1);
           return(true);
@@ -338,6 +339,7 @@ function MainPage({route,navigation}){
         {
           // change char and bool of square and add to player2 score
           changeChar(tempId - vertic, player2N.charAt(0));
+          changeColor(tempId - vertic, 'red');
           changeBool(tempId - vertic);
           setScore2(Score2 + 1);
           return(true);
@@ -381,6 +383,7 @@ function MainPage({route,navigation}){
         {
           // change char and bool of square and add to player1 score
           changeChar(tempId + vertic, player1N.charAt(0));
+          changeColor(tempId + vertic, 'blue');
           changeBool(tempId + vertic);
           setScore1(Score1 + 1);
           return(true);
@@ -390,6 +393,7 @@ function MainPage({route,navigation}){
         {
           // change char and bool of square and add to player2 score
           changeChar(tempId + vertic, player2N.charAt(0));
+          changeColor(tempId + vertic, 'red');
           changeBool(tempId + vertic);
           setScore2(Score2 + 1);
           return(true);
@@ -436,6 +440,7 @@ const checkSquaresHLeft = (id) =>{
         {
           // change char and bool of square and add to player1 score
           changeChar(tempId - 1, player1N.charAt(0));
+          changeColor(tempId - 1, 'blue');
           changeBool(tempId - 1);
           setScore1(Score1 + 1)
           return(true);
@@ -445,6 +450,7 @@ const checkSquaresHLeft = (id) =>{
         {
           // change char and bool of square and add to player2 score
           changeChar(tempId - 1, player2N.charAt(0));
+          changeColor(tempId - 1, 'red');
           changeBool(tempId - 1);
           setScore2(Score2 + 1)
           return(true);
@@ -486,6 +492,7 @@ const checkSquaresHLeft = (id) =>{
         {
           // change char and bool of square and add to player1 score
           changeChar(tempId + 1, player1N.charAt(0));
+          changeColor(tempId + 1, 'blue');
           changeBool(tempId + 1);
           setScore1(Score1 + 1)
           return(true);
@@ -495,6 +502,7 @@ const checkSquaresHLeft = (id) =>{
         {
           // change char and bool of square and add to player2 score
           changeChar(tempId + 1, player2N.charAt(0));
+          changeColor(tempId + 1, 'red');
           changeBool(tempId + 1);
           setScore2(Score2 + 1)
           return(true);
@@ -563,7 +571,7 @@ const checkSquaresHLeft = (id) =>{
             }
              if(item.bool == 'true')
             {
-            return(<Text style={{width: 25, height: 25,backgroundColor: 'white', fontSize: 20}}>{item.char}</Text>)
+            return(<Text style={{color: item.tColor, width: 25, height: 25,backgroundColor: 'white', fontSize: 20}}>{item.char}</Text>)
             }  
           }
 
@@ -668,6 +676,23 @@ const checkCount = () =>{
     setgrid(grid => 
       [...grid].map(el => 
           el.id == id ? ({...el, char:item}) : el)
+      )
+  }
+
+    /**
+ * Purpose:changes a tColor in the grid
+ * Parameter(s):
+ *  <1> id: the object key number in the grid
+ * Precondition(s): none
+ * Return: none
+ * Side Effect(s):
+ * <1> changes object tColor to players color by creating a new grid with the new variable change
+ */
+  const changeColor = (id,item) => {
+    
+    setgrid(grid => 
+      [...grid].map(el => 
+          el.id == id ? ({...el, tColor:item}) : el)
       )
   }
 
