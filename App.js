@@ -442,7 +442,7 @@ const checkSquaresHLeft = (id) =>{
           changeChar(tempId - 1, player1N.charAt(0));
           changeColor(tempId - 1, 'blue');
           changeBool(tempId - 1);
-          setScore1(Score1 + 1)
+          setScore1(Score1 + 1);
           return(true);
         }
         //whos turn is it check
@@ -452,7 +452,7 @@ const checkSquaresHLeft = (id) =>{
           changeChar(tempId - 1, player2N.charAt(0));
           changeColor(tempId - 1, 'red');
           changeBool(tempId - 1);
-          setScore2(Score2 + 1)
+          setScore2(Score2 + 1);
           return(true);
         }
       }
@@ -494,7 +494,7 @@ const checkSquaresHLeft = (id) =>{
           changeChar(tempId + 1, player1N.charAt(0));
           changeColor(tempId + 1, 'blue');
           changeBool(tempId + 1);
-          setScore1(Score1 + 1)
+          setScore1(Score1 + 1);
           return(true);
         }
         //whos turn is it check
@@ -504,7 +504,7 @@ const checkSquaresHLeft = (id) =>{
           changeChar(tempId + 1, player2N.charAt(0));
           changeColor(tempId + 1, 'red');
           changeBool(tempId + 1);
-          setScore2(Score2 + 1)
+          setScore2(Score2 + 1);
           return(true);
         }
       }
@@ -589,10 +589,10 @@ const checkTurn = () =>{
 
   if(turn % 2 == 1)
     {
-      return(<Text style={{color: 'blue', textAlign:'center', fontSize:35}}> Player 1 Turn! </Text>);
+      return(<Text style={{color: 'blue', textAlign:'center', fontSize:20}}> Player 1 Turn! </Text>);
     }
     else{
-      return(<Text style={{color: 'red', textAlign:'center', fontSize:35}}> Player 2 Turn! </Text>);
+      return(<Text style={{color: 'red', textAlign:'center', fontSize:20}}> Player 2 Turn! </Text>);
     }
 
 }
