@@ -27,7 +27,8 @@ We were given the option of creating the app we wanted, as long as it was comple
 
 Installation:
 ------------
-Not sure how to do this part yet. 
+To access the game, you will need to download Expo Go on your andriod or Iphone. atleast for Iphones if you go into the App store and search Expo, Expo Go will be one of the first apps to appear.  once downloaded you will need to sign up this does not cost anything and is very straight forward. once you are signed up and the app is downloaded all you need to do is use ur phones camera and scan the QR code below this will allow you access to the game!
+<img src="/assets/images/QR_code.png">
 
 Manifest
 --------
