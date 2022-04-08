@@ -615,7 +615,7 @@ const checkCount = () =>{
     if(Score1 > Score2)
     {
       Alert.alert(
-        "Congradulations!",
+        "Congratulations!",
         player1N + " is the winner!",
         [
           { text: "OK", onPress: () => navigation.navigate('StartPage') }
@@ -625,7 +625,7 @@ const checkCount = () =>{
     if(Score1 < Score2)
     {
       Alert.alert(
-        "Congradulations!",
+        "Congratulations!",
         player2N + " is the winner!",
         [
           { text: "OK", onPress: () => navigation.navigate('StartPage') }
@@ -635,7 +635,7 @@ const checkCount = () =>{
     if(Score1 == Score2)
     {
       Alert.alert(
-        "Congradulations!",
+        "Congratulations!",
         "No one lost its a tie!",
         [
           { text: "OK", onPress: () => navigation.navigate('StartPage') }
